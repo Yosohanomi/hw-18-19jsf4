@@ -2,10 +2,29 @@ import { getStudentsApi } from "../api/getStudentsApi.js";
 import { addStudentApi } from "../api/addStudentApi.js";
 
 export const addStudents = async (e) => {
-    if (e.target.nodeName === "SUBMIT") {
-        const id = e.target.dataset.id
-        await addStudentApi(id);
+    e.preventDefault();
+    try {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+        const course = document.getElementById("course").value;
+        const skills = document.getElementById("skills").value.split(",").map(skill => skill.trim());
+        const email = document.getElementById("email").value;
+        const isEnrolled = document.getElementById("isEnrolled").checked;
+        
+        const student = {
+            name,
+            age,
+            course,
+            skills,
+            email,
+            isEnrolled
+        };
+
+        await addStudentApi(student);
+        document.getElementById("add-student-form").reset();
         await getStudentsApi();
     }
-    else{console.log(nor);}
+    catch (error) {
+        console.log("Помилка при додаванні студента:", error);
+    }
 }

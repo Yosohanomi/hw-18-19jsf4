@@ -68,6 +68,11 @@ body {
   
   }
   
+.buttons__td {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
   
   
   button {

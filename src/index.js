@@ -1,11 +1,19 @@
-//  https://695054968531714d9bd0565f.mockapi.io/students
+import { getStudentsApi } from "./api/getStudentsApi.js";
+import { addStudents } from "./js/addStudent.js";
+import { deleteStudent } from "./js/deleteStudent.js";
+import { updateStudent } from "./js/updateStudents.js";
 
-import { getStudentsApi } from "./api/getStudentsApi";
-import { addStudents } from "./js/addStudent";
+const getStudentsBtn = document.getElementById("get-students-btn");
+getStudentsBtn.addEventListener("click", getStudentsApi);
 
+const addStudentForm = document.getElementById("add-student-form");
+addStudentForm.addEventListener("submit", addStudents);
 
-const getStudentsBtn = document.getElementById("get-students-btn")
-getStudentsBtn.addEventListener("click", getStudentsApi)
-const addStudentBtn = document.getElementById("addStudentBtn");
-
-addStudentBtn.addEventListener("click", addStudents)
+const studentsTable = document.getElementById("students-table");
+studentsTable.addEventListener("click", (e) => {
+    if (e.target.classList.contains('delete-btn')) {
+        deleteStudent(e);
+    } else if (e.target.classList.contains('update-btn')) {
+        updateStudent(e);
+    }
+});

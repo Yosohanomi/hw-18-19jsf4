@@ -1,4 +1,4 @@
-export const addStudentApi = async(student) => {
+export const addStudentApi = async (student) => {
     return await fetch("https://695054968531714d9bd0565f.mockapi.io/students", {
         method: "POST",
         body: JSON.stringify(student),
@@ -7,5 +7,5 @@ export const addStudentApi = async(student) => {
         },
     })
     .then(response => response.json())
-    .then(post => console.log(post))
+    .catch(error => console.log(error));
 }
